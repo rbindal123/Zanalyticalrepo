@@ -1,0 +1,198 @@
+{
+	"_version": "1.7.0",
+	"start_url": "start.html",
+	"sap.app": {
+		"id": "co.lb.ZANALYTICAL2",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{app_title}}",
+		"description": "{{app_description}}",
+		"dataSources": {
+			"ZNETSALES_OVP1_CDS": {
+				"uri": "/sap/opu/odata/sap/ZNETSALES_OVP1_CDS/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"annotations": [
+						"ZNETSALES_OVP1_CDS_VAN"
+					],
+					"localUri": "localService/ZNETSALES_OVP1_CDS/metadata.xml"
+				}
+			},
+			"ZNETSALES_OVP1_CDS_VAN": {
+				"uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZNETSALES_OVP1_CDS_VAN',Version='0001')/$value/",
+				"type": "ODataAnnotation",
+				"settings": {
+					"localUri": "localService/ZNETSALES_OVP1_CDS/ZNETSALES_OVP1_CDS_VAN.xml"
+				}
+			},
+			"ZNETSALES_OVP2_CDS": {
+				"uri": "/sap/opu/odata/sap/ZNETSALES_OVP2_CDS/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"annotations": [
+						"ZNETSALES_OVP2_CDS_VAN"
+					],
+					"localUri": "localService/ZNETSALES_OVP2_CDS/metadata.xml"
+				}
+			},
+
+			"ZNETSALES_OVP2_CDS_VAN": {
+				"uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZNETSALES_OVP2_CDS_VAN',Version='0001')/$value/",
+				"type": "ODataAnnotation",
+				"settings": {
+					"localUri": "localService/ZNETSALES_OVP1_CDS/ZNETSALES_OVP2_CDS_VAN.xml"
+				}
+			},
+			"ZNETSALES_OVP3_CDS": {
+				"uri": "/sap/opu/odata/sap/ZNETSALES_OVP3_CDS/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"annotations": [
+						"ZNETSALES_OVP3_CDS_VAN"
+					],
+					"localUri": "localService/ZNETSALES_OVP3_CDS/metadata.xml"
+				}
+			},
+
+			"ZNETSALES_OVP3_CDS_VAN": {
+				"uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZNETSALES_OVP3_CDS_VAN',Version='0001')/$value/",
+				"type": "ODataAnnotation",
+				"settings": {
+					"localUri": "localService/ZNETSALES_OVP3_CDS/ZNETSALES_OVP3_CDS_VAN.xml"
+				}
+			}
+		},
+		"sourceTemplate": {
+			"id": "OVP.cardtemplate",
+			"version": "0.0.0"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ovp": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},
+			"@i18n": {
+				"preload": true,
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},
+			"ZNETSALES_OVP1_CDS": {
+				"dataSource": "ZNETSALES_OVP1_CDS",
+				"settings": {
+					"defaultCountMode": "Inline"
+				}
+			},
+			"ZNETSALES_OVP2_CDS": {
+				"dataSource": "ZNETSALES_OVP2_CDS",
+				"settings": {
+					"defaultCountMode": "Inline"
+				}
+			},
+			"ZNETSALES_OVP3_CDS": {
+				"dataSource": "ZNETSALES_OVP3_CDS",
+				"settings": {
+					"defaultCountMode": "Inline"
+				}
+			}
+		},
+		"extends": {
+			"extensions": {}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		}
+	},
+	"sap.ovp": {
+		"globalFilterModel": "ZNETSALES_OVP1_CDS",
+		"globalFilterEntityType": "ZNETSALES_OVP1Type",
+		"containerLayout": "resizable",
+		"enableLiveFilter": true,
+		"considerAnalyticalParameters": true,
+		"cards": {
+			"card00": {
+				"model": "ZNETSALES_OVP1_CDS",
+				"template": "sap.ovp.cards.table",
+				"settings": {
+					"title": "{{card00_title}}",
+					"entitySet": "ZNETSALES_OVP1",
+					"sortBy": "matnr",
+					"sortOrder": "ascending",
+					"addODataSelect": true,
+					"annotationPath": "com.sap.vocabularies.UI.v1.LineItem#Q1",
+					"defaultSpan": {
+						"rows": 3,
+						"cols": 4
+					}
+				}
+			},
+
+			"card01": {
+				"model": "ZNETSALES_OVP1_CDS",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"title": "{{card00_title}}",
+					"entitySet": "ZNETSALES_OVP1",
+					"addODataSelect": true,
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Q2",
+					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#Q2",
+					"selectionAnnotationPath": "com.sap.vocabularies.UI.v1.Selection#Q1",
+					"identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#Q2",
+					"presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#Q2"
+				}
+			},
+			"card02": {
+				"model": "ZNETSALES_OVP2_CDS",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"title": "{{card02_title}}",
+					"entitySet": "ZNETSALES_OVP2",
+					"addODataSelect": true,
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Q1",
+					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#Q1",
+					"identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#Q1",
+					"presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#Q1"
+				}
+			},
+			"card03": {
+				"model": "ZNETSALES_OVP3_CDS",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"title": "{{card03_title}}",
+					"entitySet": "ZNETSALES_OVP3",
+					"addODataSelect": true,
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Q1",
+					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#Q1",
+					"identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#Q1",
+					"presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#Q1"
+				}
+			}
+
+		}
+	}
+}
